@@ -2,7 +2,6 @@ package com.project.task.myapppetproject.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -25,7 +24,6 @@ public class Reservation {
 
     @Column(name = "reservation_date")
     @NotNull
-    @Future
     private LocalDateTime reservationDate;
 
     @Column(name = "price_paid")

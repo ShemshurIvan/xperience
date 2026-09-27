@@ -3,6 +3,7 @@ package com.project.task.myapppetproject.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,10 @@ public class User {
     @NotBlank
     private String email;
 
+    @Column(name = "password")
+    @NotBlank
+    private String password;
+
     @OneToMany( mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
@@ -46,6 +51,13 @@ public class User {
         product.setOwner(null);
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getFirstName() {
         return firstName;

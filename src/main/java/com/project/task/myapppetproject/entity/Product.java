@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -20,9 +21,10 @@ public class Product {
 
     @Column(name = "name")
     @NotBlank
+    @Size(max = 100)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 2000)
     private String description;
 
     @Column(name = "created_at", updatable = false)
@@ -34,6 +36,11 @@ public class Product {
     @Min(0)
     private BigDecimal price;
 
+    @Column(name = "max_people")
+    @NotNull
+    @Min(1)
+    private Integer maxPeople;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
@@ -44,6 +51,14 @@ public class Product {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public Integer getMaxPeople() {
+        return maxPeople;
+    }
+
+    public void setMaxPeople(Integer maxPeople) {
+        this.maxPeople = maxPeople;
     }
 
     public String getName() {
