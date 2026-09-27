@@ -3,7 +3,7 @@ package com.project.task.myapppetproject.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,10 @@ public class User {
     @Column(name = "last_name")
     @NotBlank
     private String lastName;
+
+    @Column(name = "age")
+    @NotNull
+    private Integer age;
 
     @Column(name = "email", unique = true, nullable = false)
     @Email
@@ -87,4 +91,11 @@ public class User {
         return id;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }
